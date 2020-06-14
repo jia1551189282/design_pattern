@@ -4,8 +4,8 @@ package com.jia.design.pattern.creational.factorymethod;
  * @author : zjj
  * @date : 2020/6/3 20:52
  */
-public class VideoFactory {
-    // 方式一 通过简单类型传入，工厂从而确定来创建什么课程
+public abstract class VideoFactory {
+   /* // 方式一 通过简单类型传入，工厂从而确定来创建什么课程
     // 但是要加入新的课程就要改工厂方法
     public Video getVideo(String type){
         if("java".equals(type)){
@@ -30,5 +30,11 @@ public class VideoFactory {
             e.printStackTrace();
         }
         return video;
-    }
+    }*/
+
+    /**
+     * 创建视频的抽象方法
+     * @return
+     */
+   public abstract Video getVideo();
 }

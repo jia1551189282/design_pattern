@@ -7,25 +7,21 @@ package com.jia.design.pattern.creational.factorymethod;
 public class Test {
 
     public static void main(String[] args) {
-        VideoFactory videoFactory = new VideoFactory();
-        Video video = videoFactory.getVideo("java");
-    }
-
-    /**
-     * 多态的思想  但是会对子类产生依赖
-     */
-    public static void  test1(){
-        Video video = new JavaVideo();
+        VideoFactory videoFactory = new JavaVideoFactory();
+        Video video = videoFactory.getVideo();
         video.produce();
+
+        VideoFactory videoFactory1 = new PythonVideoFactory();
+        Video video1 = videoFactory1.getVideo();
+        video1.produce();
+
+        VideoFactory videoFactory2 = new FEVideoFactory();
+        Video video2 = videoFactory2.getVideo();
+        video2.produce();
+
+
+
     }
 
-    public static void test2(){
-        VideoFactory videoFactory = new VideoFactory();
-        Video video = videoFactory.getVideo("java");
-    }
 
-    public static void test3(){
-        VideoFactory videoFactory = new VideoFactory();
-        videoFactory.getVideo2(JavaVideo.class);
-    }
 }
