@@ -1,30 +1,38 @@
 package com.jia.design.pattern.creational.builder;
 
-public class CourseActualBuilder extends  CourseBuilder {
+/**
+ * @author ZJJ
+ * @date 2020/6/15 0015 上午 10:18
+ */
+
+/**
+ * 建造者 实际实现
+ */
+public class CourseActualBuilder extends CourseBuilder {
 
     private Course course = new Course();
     @Override
-    public void buildCourseName(String courseName) {
+    public void builderCourseName(String courseName) {
         course.setCourseName(courseName);
     }
 
     @Override
-    public void buildCoursePPT(String coursePPT) {
+    public void builderCoursePPT(String coursePPT) {
         course.setCoursePPT(coursePPT);
     }
 
     @Override
-    public void buildCourseVideo(String courseVideo) {
-        course.setCoursevideo(courseVideo);
+    public void builderCourseVideo(String courseVideo) {
+        course.setCourseVideo(courseVideo);
     }
 
     @Override
-    public void buildCourseArticle(String courseArticle) {
+    public void builderCourseArticle(String courseArticle) {
         course.setCourseArticle(courseArticle);
     }
 
     @Override
-    public void buildCourseQA(String courseQA) {
+    public void builderCourseQA(String courseQA) {
         course.setCourseQA(courseQA);
     }
 
