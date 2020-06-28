@@ -1,11 +1,13 @@
 package com.jia.design.pattern.creational.prototype.v3_deepclone;
 
+import java.io.Serializable;
+
 /**
  * @author ZJJ
  * @date 2020/6/28 0028 上午 10:45
  */
 
-public class Person implements Cloneable{
+public class Person implements Cloneable, Serializable {
     private String username;
     private Integer age;
 

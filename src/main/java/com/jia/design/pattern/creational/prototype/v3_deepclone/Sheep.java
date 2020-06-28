@@ -5,7 +5,7 @@ package com.jia.design.pattern.creational.prototype.v3_deepclone;
  * @date 2020/6/28 0028 上午 10:44
  */
 
-import java.io.Serializable;
+import java.io.*;
 
 /**
  * 深克隆的实现
@@ -76,7 +76,14 @@ public class Sheep implements Serializable,Cloneable {
                 '}';
     }
 
-    @Override
+    /**
+     * 深克隆处理方式1：
+     *      引用类型也用克隆来处理
+     *      存在问题：
+     *          如果引用类型过多的话，需要处理的过程就比较多了
+     * @return
+     */
+    /*@Override
     protected Object clone()  {
         Sheep sheep = null ;
         try {
@@ -91,5 +98,45 @@ public class Sheep implements Serializable,Cloneable {
         }
 
         return sheep;
+    }*/
+
+    /**
+     * 处理方法2 :
+     *      用序列化的方式来处理
+     *
+     * @return
+     * @throws CloneNotSupportedException
+     */
+    @Override
+    protected Object clone()  {
+        ByteArrayInputStream bis = null;
+        ObjectInputStream ois = null ;
+        ByteArrayOutputStream bos = null;
+        ObjectOutputStream oos = null ;
+
+        try{
+            // 序列化
+            bos = new ByteArrayOutputStream();
+            oos = new ObjectOutputStream(bos);
+            oos.writeObject(this);
+            // 反序列化
+            bis = new ByteArrayInputStream(bos.toByteArray());
+            ois = new ObjectInputStream(bis);
+            Sheep sheep = (Sheep) ois.readObject();
+            return  sheep ;
+        }catch (Exception e){
+            e.printStackTrace();
+            return  null;
+
+        }finally {
+            try{
+                ois.close();
+                bis.close();
+                oos.close();
+                bos.close();
+            }catch (Exception e1){
+                e1.printStackTrace();
+            }
+        }
     }
 }
